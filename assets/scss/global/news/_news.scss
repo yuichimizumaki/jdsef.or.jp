@@ -1,0 +1,39 @@
+.news {
+  .news-list {
+    border-bottom: 1px solid #000;
+    padding-bottom: 1.5rem;
+
+    @include media-min() {
+      display: flex;
+    }
+
+    +.news-list {
+      padding-top: 1.5rem;
+    }
+
+    &__header {
+      &--date {
+        padding-right: 1.0rem;
+      }
+
+    }
+
+    &__body {
+      display: flex;
+      margin-top: 0.5rem;
+
+      @include media-min() {
+        margin-top: 0;
+      }
+
+      a {
+        color: #000;
+
+        &:hover {
+          color: $color-primary;
+        }
+      }
+    }
+
+  }
+}

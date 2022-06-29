@@ -1,0 +1,215 @@
+@charset "UTF-8";
+/*====================================
+  01. Basic Variables
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Bacic Size
+    - 2. Breakpoints
+    - 3. Colors
+    
+    ----------------------------------
+    Introduction
+    ----------------------------------
+    
+    ----------------------------------
+    Constitution
+    ----------------------------------
+    child of
+    
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/07/20   Founding
+    
+====================================*/
+
+/*====================================
+
+  - 1. Bacic Font Size
+--------------------------------------
+  font-size と　line-height　共に
+  単位省略(px)して書いてね
+  両方とも<html>に設定されるよ
+
+  ここでのline-heightは
+  小さめにしとくといいと思う
+
+  ここでのline-heightは
+  小さめにしとくといいと思う
+
+  いろんなところで使う $basic-design-size
+  基本的に16かな
+
+====================================*/
+/* Font Size (px) */
+$basic-font-size: 16;
+
+/* Line Height (px) */
+$basic-line-height: 24;
+
+/* Design Size (px) */
+$basic-design-size: 16;
+
+/*====================================
+
+  - 2. Breakpoints
+--------------------------------------
+
+====================================*/
+$breakpoints: (
+  /* ブレイクポイントリスト */
+  mini : 320px,
+  tiny : 420px,
+  small : 576px,
+  medium : 768px,
+  large : 992px,
+  big : 1200px,
+  huge : 1400px,
+  massive: 1600px,
+  gigantic: 2400px
+  /* ブレイクポイントリスト */
+);
+
+$utility-breakpoint:small,
+medium;
+$default-breakpoint: medium;
+
+/*
+h1{
+  font-size: 1em;
+  @include media-min() {
+    font-size: 2em;
+  }
+  @include media-min(massive) {
+    font-size: 3em;
+  }
+  @include media-min(9999px) {
+    font-size: 4em;
+  }
+}
+*/
+/*------------------------------------
+  $breakpoints(map)を
+  取得するための @function
+------------------------------------*/
+@function breakpoint($key) {
+  @if type-of($key)==number {
+    @return $key+0px;
+  }
+
+  @else {
+    @return map-get($breakpoints, $key);
+  }
+}
+
+$max-width: 1400px;
+
+
+/*====================================
+
+  - 3. Colors
+--------------------------------------
+
+====================================*/
+$colors: (
+  /* サイトカラーパレット */
+  primary: #009BEA,
+  secondary: #0A3E86,
+  tertiary: #F9F9FA,
+  gray: #5F717E,
+  /* サイトカラーパレット */
+);
+
+
+@function color($key) {
+  @return map-get($colors, $key);
+}
+
+$color-primary: color(primary);
+$color-secondary: color(secondary);
+$color-tertiary: color(tertiary);
+$color-gray: color(gray);
+
+/* $color-primary */
+$color-primary-100: tint-color($color-primary, 12);
+$color-primary-150: tint-color($color-primary, 11);
+$color-primary-200: tint-color($color-primary, 10);
+$color-primary-250: tint-color($color-primary, 9);
+$color-primary-300: tint-color($color-primary, 8);
+$color-primary-350: tint-color($color-primary, 6);
+$color-primary-400: tint-color($color-primary, 4);
+$color-primary-450: tint-color($color-primary, 2);
+$color-primary-500: $color-primary;
+$color-primary-550: shade-color($color-primary, 2);
+$color-primary-600: shade-color($color-primary, 4);
+$color-primary-650: shade-color($color-primary, 6);
+$color-primary-700: shade-color($color-primary, 8);
+$color-primary-750: shade-color($color-primary, 9);
+$color-primary-800: shade-color($color-primary, 10);
+$color-primary-850: shade-color($color-primary, 11);
+$color-primary-900: shade-color($color-primary, 12);
+
+/* $color-secondary */
+$color-secondary-100: tint-color($color-secondary, 12);
+$color-secondary-150: tint-color($color-secondary, 11);
+$color-secondary-200: tint-color($color-secondary, 10);
+$color-secondary-250: tint-color($color-secondary, 9);
+$color-secondary-300: tint-color($color-secondary, 8);
+$color-secondary-350: tint-color($color-secondary, 6);
+$color-secondary-400: tint-color($color-secondary, 4);
+$color-secondary-450: tint-color($color-secondary, 2);
+$color-secondary-500: $color-secondary;
+$color-secondary-550: shade-color($color-secondary, 2);
+$color-secondary-600: shade-color($color-secondary, 4);
+$color-secondary-650: shade-color($color-secondary, 6);
+$color-secondary-700: shade-color($color-secondary, 8);
+$color-secondary-750: shade-color($color-secondary, 9);
+$color-secondary-800: shade-color($color-secondary, 10);
+$color-secondary-850: shade-color($color-secondary, 11);
+$color-secondary-900: shade-color($color-secondary, 12);
+
+/* $color-tertiary */
+$color-tertiary-100: tint-color($color-tertiary, 12);
+$color-tertiary-150: tint-color($color-tertiary, 11);
+$color-tertiary-200: tint-color($color-tertiary, 10);
+$color-tertiary-250: tint-color($color-tertiary, 9);
+$color-tertiary-300: tint-color($color-tertiary, 8);
+$color-tertiary-350: tint-color($color-tertiary, 6);
+$color-tertiary-400: tint-color($color-tertiary, 4);
+$color-tertiary-450: tint-color($color-tertiary, 2);
+$color-tertiary-500: $color-tertiary;
+$color-tertiary-550: shade-color($color-tertiary, 2);
+$color-tertiary-600: shade-color($color-tertiary, 4);
+$color-tertiary-650: shade-color($color-tertiary, 6);
+$color-tertiary-700: shade-color($color-tertiary, 8);
+$color-tertiary-750: shade-color($color-tertiary, 9);
+$color-tertiary-800: shade-color($color-tertiary, 10);
+$color-tertiary-850: shade-color($color-tertiary, 11);
+$color-tertiary-900: shade-color($color-tertiary, 12);
+
+/* $color-gray */
+$color-gray-100: tint-color($color-gray, 12);
+$color-gray-150: tint-color($color-gray, 11);
+$color-gray-200: tint-color($color-gray, 10);
+$color-gray-250: tint-color($color-gray, 9);
+$color-gray-300: tint-color($color-gray, 8);
+$color-gray-350: tint-color($color-gray, 6);
+$color-gray-400: tint-color($color-gray, 4);
+$color-gray-450: tint-color($color-gray, 2);
+$color-gray-500: $color-gray;
+$color-gray-550: shade-color($color-gray, 2);
+$color-gray-600: shade-color($color-gray, 4);
+$color-gray-650: shade-color($color-gray, 6);
+$color-gray-700: shade-color($color-gray, 8);
+$color-gray-750: shade-color($color-gray, 9);
+$color-gray-800: shade-color($color-gray, 10);
+$color-gray-850: shade-color($color-gray, 11);
+$color-gray-900: shade-color($color-gray, 12);
+
+
+$color-link: #009BEA;
+$color-hover: #0A3E86;
+$color-blue: #0A3E86;
+$color-bg: #fff;
+$color-body: #000;

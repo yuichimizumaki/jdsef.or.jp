@@ -1,0 +1,2204 @@
+@charset "UTF-8";
+/*! Global Styles */
+/*====================================
+  *. Global
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Base Import
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+
+    ----------------------------------
+    Constitution
+    ----------------------------------
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/07/20   Founding
+
+====================================*/
+/*====================================
+
+  - 1. Base Import
+--------------------------------------
+  まずはbasic-styleと
+  君が作るブランクの
+  - variables
+  - function
+  - mixin を読み込むぞ
+
+====================================*/
+/*====================================
+  0. Base Function
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Map Deep Get
+    - 2. REM Calculator
+    - 3. Line Height Calculator
+    - 4. Strip Unit
+    - 5. Tint & Shade Color
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+
+    ----------------------------------
+    Constitution
+    ----------------------------------
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/07/20   Founding
+
+====================================*/
+/*====================================
+
+  - 1. Map Deep Get
+--------------------------------------
+  ネストされたmapを取得できる
+  map-deep-get()
+
+====================================*/
+/*====================================
+
+  - 2. REM Calculator
+--------------------------------------
+  px -> rem の計算機
+  $basic-font-size必須
+  rem-calc(number);
+
+====================================*/
+/*
+*{
+  font-size: rem-calc(14);
+}
+*{
+  font-size: 0.875rem;
+}
+*/
+/*
+*{
+  font-size: px-rem-calc(0.875);
+}
+*{
+  font-size: 14px;
+}
+*/
+/*
+*{
+  font-size: em-calc(14);
+}
+*{
+  font-size: 0.875em;
+}
+*{
+  font-size: em-calc(16,14);
+}
+*{
+  font-size: 1.125em;
+}
+*/
+/*
+*{
+  width: basic-size(2);
+}
+*{
+  width: 32px;
+}
+*/
+/*====================================
+
+  - 3. Line Height Calculator
+--------------------------------------
+  line-height の計算機
+  px からで 比率計算できる
+  $basic-font-size必須
+  line-height-cal(line-height, font-size);
+
+====================================*/
+/*
+*{
+  line-height: line-height-calc(32);
+}
+*{
+  line-height: 2.0
+}
+*/
+/*====================================
+
+  - 4. Strip Unit
+--------------------------------------
+  単位がある数値を数値だけにする
+
+====================================*/
+/*====================================
+
+  - 5. Tint & Shade Color
+--------------------------------------
+  色に白や黒を混ぜる
+  $theme-color-interval は混ぜる割合
+
+  $color-100: tint-color($color, 8);
+  $color-200: tint-color($color, 6);
+  $color-300: tint-color($color, 4);
+  $color-400: tint-color($color, 2);
+  $color-500: $color;
+  $color-600: shade-color($color, 2);
+  $color-700: shade-color($color, 4);
+  $color-800: shade-color($color, 6);
+  $color-900: shade-color($color, 8);
+
+====================================*/
+/*====================================
+  01. Basic Variables
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Bacic Size
+    - 2. Breakpoints
+    - 3. Colors
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+
+    ----------------------------------
+    Constitution
+    ----------------------------------
+    child of
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/07/20   Founding
+
+====================================*/
+/*====================================
+
+  - 1. Bacic Font Size
+--------------------------------------
+  font-size と　line-height　共に
+  単位省略(px)して書いてね
+  両方とも<html>に設定されるよ
+
+  ここでのline-heightは
+  小さめにしとくといいと思う
+
+  ここでのline-heightは
+  小さめにしとくといいと思う
+
+  いろんなところで使う $basic-design-size
+  基本的に16かな
+
+====================================*/
+/* Font Size (px) */
+/* Line Height (px) */
+/* Design Size (px) */
+/*====================================
+
+  - 2. Breakpoints
+--------------------------------------
+
+====================================*/
+/*
+h1{
+  font-size: 1em;
+  @include media-min() {
+    font-size: 2em;
+  }
+  @include media-min(massive) {
+    font-size: 3em;
+  }
+  @include media-min(9999px) {
+    font-size: 4em;
+  }
+}
+*/
+/*------------------------------------
+  $breakpoints(map)を
+  取得するための @function
+------------------------------------*/
+/*====================================
+
+  - 3. Colors
+--------------------------------------
+
+====================================*/
+/* $color-primary */
+/* $color-secondary */
+/* $color-tertiary */
+/* $color-gray */
+/*====================================
+  0. Base MIXINS
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Font size
+    - 2. Media Queries width
+      2.1 Media Queries width base
+      2.2 Media Queries min
+      2.3 Media Queries max
+      2.4 Media Queries Only
+    - 3. Media Dark Mode
+    - 4. Media Portrait
+    - 5. Media Landscape
+    - 6. Button Reset
+    - 7. Size
+    - 8. Aspect Ratio
+    - 9. Background Cover
+    - 10. Padding & Margin
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+
+    ----------------------------------
+    Constitution
+    ----------------------------------
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/07/20   Founding
+
+====================================*/
+/*====================================
+
+  - 1. Font size
+--------------------------------------
+  font-size のem
+  line-heightを求めるmixin
+  基本数は$basic_font_sizeで設定
+
+  @include font-size(16);
+  output:
+  font-size: 1em;
+
+  @include font-size(16, 18);
+  output:
+  font-size: 1em;
+  line-height: 1.125;
+
+====================================*/
+/*====================================
+
+  - 2. Media Queries width
+--------------------------------------
+  @include media-min(999) { *** }
+  output:
+  @media (min-width: 999)  { *** }
+
+  @include media-max(999) { *** }
+  output:
+  @media (max-width: 999)  { *** }
+
+  @include media-only(999, 9999) { *** }
+  output:
+  @media (min-width: 999) and (max-width: 9999)  { *** }
+
+====================================*/
+/*------------------------------------
+  2.1 Media Queries width base
+------------------------------------*/
+/*------------------------------------
+  2.2 Media Queries min
+------------------------------------*/
+/*------------------------------------
+  2.3 Media Queries max
+------------------------------------*/
+/*------------------------------------
+  2.4 Media Queries Only
+------------------------------------*/
+/*====================================
+
+  - 3. Media Dark Mode
+--------------------------------------
+  ダークモード用
+
+  @include media-dark { *** }
+  output:
+  @media (prefers-color-scheme: dark)  { *** }
+
+====================================*/
+/*====================================
+
+  - 4. Media Portrait
+--------------------------------------
+  画面が縦長用
+
+  @include media-portrait { *** }
+  output:
+  @media (orientation: portrait)  { *** }
+
+====================================*/
+/*====================================
+
+  - 5. Media Landscape
+--------------------------------------
+  画面が横長用
+
+  @include media-landscape { *** }
+  output:
+  @media (orientation: landscape)  { *** }
+
+====================================*/
+/*====================================
+
+  - 6. Button Reset
+--------------------------------------
+  <button>スタイルをリセットするmixin
+
+  @include button-reset;
+
+====================================*/
+/*
+button {
+   @include button-reset;
+   color: #000;
+}
+*/
+/*====================================
+
+  - 7. Size
+--------------------------------------
+  widthとheightを設定するmixin
+
+  @include size(100px);
+  output:
+  width: 100px;
+  height: 100px;
+
+  @include size(100px, 200px);
+  output:
+  width: 100px;
+  height: 200px;
+
+====================================*/
+/*====================================
+
+  - 8. Aspect Ratio
+--------------------------------------
+  widthに対してpadding-topで高さを計算する
+
+====================================*/
+/*====================================
+
+  - 9. Background Cover
+--------------------------------------
+  background-size: cover;のためのmixin
+
+====================================*/
+/*
+.bg {
+  @include background-cover('../assets/bg-image.jpg');
+}
+*/
+/*====================================
+
+  - 10. Padding & Margin
+--------------------------------------
+  Padding と Margin のためのmixin
+
+====================================*/
+/*! powered by Basic Assets : v1.0.7 */
+/*====================================
+  Basic Assets Styles
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Resets Modules
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+    ----------------------------------
+    Constitution
+    ----------------------------------
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/04/17   Founding
+
+====================================*/
+/*====================================
+
+  - 1. Resets Modules
+--------------------------------------
+
+====================================*/
+/*====================================
+  0. Reset Style
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 0. Full Reset
+    - 1. Border Box
+    - 2. Objects
+    - 3. List reset
+    - 4. Blockquote reset
+    - 5. link tag
+    - 6. hr
+    - 7. Computer code
+    - 8. Form
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+
+    ----------------------------------
+    Constitution
+    ----------------------------------
+    child of
+    /basic-assets/scss/_basic-style.scss
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2019/11/21   Founding
+
+====================================*/
+/*====================================
+
+  - 0. Full Reset
+--------------------------------------
+
+====================================*/
+@-ms-viewport {
+  width: device-width;
+}
+html {
+  line-height: 1;
+  /* normalize.css */
+  -webkit-text-size-adjust: 100%;
+  /* normalize.css */
+  -ms-overflow-style: scrollbar;
+  /* from bootstrap */
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+figure,
+header,
+main,
+footer,
+menu,
+nav,
+section,
+time,
+mark,
+audio,
+video,
+details,
+summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: inherit;
+  vertical-align: baseline;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+article,
+aside,
+figure,
+header,
+main,
+footer,
+nav,
+section,
+details,
+summary {
+  display: block;
+}
+
+html * {
+  max-height: 999999px;
+}
+
+/*====================================
+
+  - 1. Border Box
+--------------------------------------
+
+====================================*/
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1;
+  /*
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;*/
+}
+
+:invalid,
+:-moz-submit-invalid,
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*====================================
+
+  - 2. Objects
+--------------------------------------
+
+====================================*/
+img,
+object,
+embed {
+  max-width: 100%;
+}
+
+/*====================================
+
+  - 3. List reset
+--------------------------------------
+]
+====================================*/
+/* we use a lot of ULs that aren't bulleted. don't forget to restore the bullets within content. */
+ul,
+ol {
+  list-style: none;
+}
+
+/*====================================
+
+  - 4. Blockquote reset
+--------------------------------------
+
+====================================*/
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
+  content: none;
+}
+
+/*====================================
+
+  - 5. link tag
+--------------------------------------
+
+====================================*/
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+/*====================================
+
+  - 6. hr
+--------------------------------------
+
+====================================*/
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/*====================================
+
+  - 7. Computer code
+--------------------------------------
+
+====================================*/
+/* standardize any monospaced elements */
+pre {
+  white-space: pre;
+  /* CSS2 */
+  white-space: pre-wrap;
+  /* CSS 2.1 */
+  white-space: pre-line;
+  /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word;
+  /* IE */
+  font-size: 1em;
+  /* nomalize.css */
+}
+
+/*====================================
+
+  - 8. Form
+--------------------------------------
+
+====================================*/
+/* hand cursor on clickable elements */
+.is-clickable,
+label,
+input[type=button],
+input[type=submit],
+input[type=file],
+input[type=range],
+button {
+  cursor: pointer;
+}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-size: 100%;
+  font: inherit;
+}
+
+/* make buttons play nice in IE */
+button,
+input[type=button] {
+  width: auto;
+  overflow: visible;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+input[type=radio] {
+  vertical-align: text-bottom;
+}
+
+input[type=checkbox] {
+  vertical-align: bottom;
+}
+
+select,
+input,
+textarea {
+  font-size: 100%;
+}
+
+/*
+Show the overflow in IE.
+1. Show the overflow in Edge.
+*/
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/*
+Remove the inheritance of text transform in Edge, Firefox, and IE.
+1. Remove the inheritance of text transform in Firefox.
+*/
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/*
+Correct the inability to style clickable types in iOS and Safari.
+*/
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+}
+
+/*
+Remove the inner border and padding in Firefox.
+*/
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/*
+Restore the focus styles unset by the previous rule.
+*/
+button:-moz-focusring,
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/*
+Correct the padding in Firefox.
+*/
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/*
+1. Correct the text wrapping in Edge and IE.
+2. Correct the color inheritance from `fieldset` elements in IE.
+3. Remove the padding so developers are not caught out when they zero out fieldset` elements in all browsers.
+*/
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+
+/*
+Add the correct vertical alignment in Chrome, Firefox, and Opera.
+*/
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Remove the default vertical scrollbar in IE 10+.
+*/
+textarea {
+  overflow: auto;
+}
+
+/*
+1. Add the correct box sizing in IE 10.
+2. Remove the padding in IE 10.
+*/
+[type=checkbox],
+[type=radio] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Chrome.
+*/
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+[type=search] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/* Align Utility Style
+================================ */
+/* Default Variables
+++++++++++++++++++++++++++++++++ */
+/* Align Array
+-------------------------------- */
+/* Vertical Align Array
+-------------------------------- */
+/* Function
+++++++++++++++++++++++++++++++++ */
+/* mixin
+++++++++++++++++++++++++++++++++ */
+/* Extend
+++++++++++++++++++++++++++++++++ */
+/* Style
+++++++++++++++++++++++++++++++++ */
+/* Align Parts
+-------------------------------- */
+align-left {
+  text-align: left !important;
+}
+align-center {
+  text-align: center !important;
+}
+align-right {
+  text-align: right !important;
+}
+align-justify {
+  text-align: justify !important;
+}
+align-top {
+  vertical-align: top !important;
+}
+align-text-top {
+  vertical-align: text-top !important;
+}
+align-middle {
+  vertical-align: middle !important;
+}
+align-baseline {
+  vertical-align: baseline !important;
+}
+align-text-bottom {
+  vertical-align: text-bottom !important;
+}
+align-bottom {
+  vertical-align: bottom !important;
+}
+
+/* breakpoint
+-------------------------------- */
+@media (min-width: 576px) {
+  align-left\:small {
+    text-align: left !important;
+  }
+  align-center\:small {
+    text-align: center !important;
+  }
+  align-right\:small {
+    text-align: right !important;
+  }
+  align-justify\:small {
+    text-align: justify !important;
+  }
+}
+
+@media (min-width: 768px) {
+  align-left\:medium {
+    text-align: left !important;
+  }
+  align-center\:medium {
+    text-align: center !important;
+  }
+  align-right\:medium {
+    text-align: right !important;
+  }
+  align-justify\:medium {
+    text-align: justify !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Lato", "Noto Sans JP", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  line-height: 1.25;
+}
+a:hover {
+  transition: 0.5s;
+}
+
+.image {
+  text-align: center;
+}
+
+.contents-space {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.global-main {
+  padding: 0rem 1rem;
+}
+.global-main__body {
+  max-width: 1056px;
+  margin: 0 auto;
+  padding-top: 4rem;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .global-main__body {
+    padding-top: 6rem;
+  }
+}
+@media (min-width: 768px) {
+  .global-main {
+    padding: 0 2rem;
+  }
+  .global-main.main-bg {
+    background-image: url(../img/main-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center 900px;
+    background-size: auto auto;
+  }
+}
+
+.anchor {
+  position: absolute;
+  top: 64px;
+}
+@media (min-width: 768px) {
+  .anchor {
+    top: 88px;
+  }
+}
+
+.pdf-link,
+.word-link {
+  display: flex;
+  align-items: center;
+}
+.pdf-link__text,
+.word-link__text {
+  display: flex;
+  align-items: baseline;
+}
+@media (min-width: 768px) {
+  .pdf-link__text,
+.word-link__text {
+    align-items: center;
+  }
+}
+.pdf-link__text p a,
+.word-link__text p a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5;
+  color: #000;
+}
+.pdf-link__text p a:hover,
+.word-link__text p a:hover {
+  color: #009BEA;
+}
+.pdf-link__text p a::before,
+.word-link__text p a::before {
+  border-top: 2px solid #009BEA;
+  content: "";
+  width: 1rem;
+  margin-right: 0.5rem;
+}
+.pdf-link + .pdf-link, .pdf-link + .word-link,
+.word-link + .pdf-link,
+.word-link + .word-link {
+  margin-top: 1rem;
+}
+.pdf-link__logo,
+.word-link__logo {
+  margin-left: 0.5rem;
+}
+
+.br-sp {
+  display: inline;
+}
+@media (min-width: 780px) {
+  .br-sp {
+    display: none;
+  }
+}
+
+.title-space {
+  margin-top: 3rem;
+}
+@media (min-width: 768px) {
+  .title-space {
+    margin-top: 6rem;
+  }
+}
+
+.footer-space {
+  margin-top: 10rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 2;
+  font-weight: 500;
+}
+h3 {
+  background-color: #009BEA;
+  color: #fff;
+  padding: 1rem 0 1rem 1.5rem;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+h3 small {
+  font-size: 1rem;
+}
+
+.global-header {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.global-header__banner {
+  background-color: #fff;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+.global-header__menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 64px;
+  z-index: 1;
+  height: 0;
+  background-color: rgba(0, 155, 234, 0.8);
+  overflow: hidden;
+  transition: height 0.5s ease-out;
+}
+.is-navigation-open .global-header__menu {
+  height: 100vh;
+}
+@media (min-width: 768px) {
+  .global-header {
+    background-color: #fff;
+    padding: 0 2rem;
+  }
+  .global-header__inner {
+    display: flex;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  .global-header__banner {
+    z-index: 1;
+    background-color: transparent;
+  }
+  .global-header__menu {
+    padding-top: 0;
+    position: relative;
+    z-index: 2;
+    height: auto;
+    width: auto;
+    overflow: visible;
+    background-color: transparent;
+    margin-left: auto;
+  }
+  .is-navigation-open .global-header__menu {
+    height: auto;
+  }
+}
+
+.global-header-banner {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+.global-header-banner__brand {
+  padding-left: 1rem;
+}
+.global-header-banner__brand a {
+  display: block;
+}
+.global-header-banner__brand img {
+  max-height: 24px;
+}
+.global-header-banner__trigger {
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .global-header-banner__brand {
+    padding: 1.5rem 0;
+  }
+  .global-header-banner__brand a {
+    display: block;
+  }
+  .global-header-banner__brand img {
+    max-height: 35px;
+  }
+  .global-header-banner__trigger {
+    display: none;
+  }
+}
+
+.global-menu {
+  text-align: center;
+}
+.global-menu dl {
+  display: block;
+}
+.global-menu dt {
+  display: block;
+  font-size: 1.25em;
+}
+.global-menu dt a {
+  padding: 1rem 1rem;
+}
+.global-menu dd {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.16);
+  padding: 0.5rem;
+}
+.global-menu dd a {
+  padding: 0.5rem;
+}
+.global-menu ul {
+  display: block;
+}
+.global-menu li {
+  display: block;
+}
+.global-menu li + li {
+  border-top: solid 1px #fff;
+}
+.global-menu a {
+  display: block;
+  color: #fff;
+}
+.global-menu a:hover {
+  background-color: #0A3E86;
+}
+.global-menu span {
+  display: block;
+}
+@media (min-width: 768px) {
+  .global-menu {
+    display: flex;
+    gap: 2rem;
+  }
+  .global-menu dl {
+    position: relative;
+  }
+  .global-menu dl dd {
+    overflow: hidden;
+    height: 0;
+  }
+  .global-menu dl:hover dd {
+    height: auto;
+  }
+  .global-menu dt {
+    font-size: 1rem;
+    padding: 1rem 0;
+  }
+  .global-menu dt a {
+    padding: 0;
+    padding-bottom: 0.25rem;
+  }
+  .global-menu dt a:hover {
+    color: #009BEA;
+    background-color: transparent;
+  }
+  .global-menu dt span {
+    white-space: nowrap;
+  }
+  .global-menu dd {
+    position: absolute;
+    top: 100%;
+    left: calc(50% - 5rem);
+    background-color: rgba(0, 155, 234, 0.96);
+    padding: 0;
+    width: 10rem;
+    font-size: 0.875rem;
+  }
+  .global-menu dd a {
+    padding: 0.5rem;
+  }
+  .global-menu ul {
+    display: block;
+  }
+  .global-menu li {
+    display: block;
+    align-items: center;
+  }
+  .global-menu li + li {
+    border-top: solid 1px #fff;
+  }
+  .global-menu a {
+    color: #000;
+  }
+  .global-menu a:hover {
+    color: #fff;
+  }
+  .global-menu span {
+    display: block;
+  }
+}
+
+.global-footer__sitemap {
+  background-color: #f9f9fa;
+  padding: 4rem 1rem;
+  display: block;
+}
+@media (min-width: 768px) {
+  .global-footer__sitemap {
+    padding: 8rem 1rem;
+  }
+}
+
+@media (min-width: 500px) {
+  .footer-sitemap {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1600px;
+    gap: 24px;
+    line-height: 1.25;
+  }
+}
+@media (min-width: 768px) {
+  .footer-sitemap {
+    gap: 160px;
+  }
+}
+.footer-sitemap dl + dl {
+  margin-top: 2rem;
+}
+@media (min-width: 500px) {
+  .footer-sitemap dl + dl {
+    margin-top: 0;
+  }
+}
+.footer-sitemap dt {
+  font-size: 1rem;
+  /*dtの次にdtが来た場合*/
+  /*dtの次にddが来た場合*/
+}
+.footer-sitemap dt + dt {
+  margin-top: 0.5rem;
+}
+.footer-sitemap dt + dd {
+  margin-top: 0.5rem;
+}
+@media (min-width: 580px) {
+  .footer-sitemap dt + dd {
+    margin-top: 1rem;
+  }
+}
+.footer-sitemap dd a {
+  display: flex;
+  align-items: center;
+  color: #000;
+}
+.footer-sitemap dd a:hover {
+  color: #009BEA;
+}
+.footer-sitemap dd a::before {
+  display: block;
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: 1px solid currentColor;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotate(45deg);
+  position: relative;
+}
+.footer-sitemap dd span {
+  flex-grow: 1;
+}
+.footer-sitemap li {
+  font-size: 0.875rem;
+  /*liの次にliが来た場合*/
+}
+.footer-sitemap li + li {
+  margin-top: 0.5rem;
+}
+.footer-sitemap a {
+  align-items: center;
+  color: #000;
+}
+.footer-sitemap a:hover {
+  color: #009BEA;
+}
+.global-footer__description {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+@media (min-width: 768px) {
+  .global-footer__description {
+    justify-content: space-between;
+  }
+}
+.global-footer__description--logo img {
+  width: 260px;
+}
+@media (min-width: 580px) {
+  .global-footer__description--logo img {
+    padding-left: 1rem;
+  }
+}
+.global-footer__description .copyright {
+  font-size: 0.75rem;
+  padding-top: 1rem;
+}
+@media (min-width: 580px) {
+  .global-footer__description .copyright {
+    padding-top: 0rem;
+  }
+}
+
+.about {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 3rem;
+}
+.about tr {
+  background-color: #f9f9fa;
+}
+.about tr:nth-child(even) {
+  background-color: #fff;
+}
+.about th,
+.about td {
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  line-height: 1.5;
+  display: block;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .about th,
+.about td {
+    padding: 1rem 0 1rem 1.5rem;
+    display: table-cell;
+  }
+}
+.about td + td {
+  border-top: 1px dotted #dfe3e5;
+}
+@media (min-width: 768px) {
+  .about td + td {
+    border-style: none;
+  }
+}
+@media (min-width: 768px) {
+  .about td {
+    width: auto;
+  }
+  .about td:not(:last-child) {
+    width: 1%;
+    white-space: nowrap;
+  }
+}
+.about th {
+  text-align: left;
+  width: 14%;
+  background-color: #dfe3e5;
+}
+@media (min-width: 768px) {
+  .about th th {
+    text-align: center;
+  }
+  .about th td {
+    width: 30%;
+    text-align: center;
+  }
+}
+.about a {
+  color: #009BEA;
+}
+.about a:hover {
+  color: #0A3E86;
+}
+
+.comparison {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 3rem;
+}
+.comparison tr {
+  background-color: #f9f9fa;
+}
+.comparison tr:nth-child(even) {
+  background-color: #fff;
+}
+.comparison th,
+.comparison td {
+  padding: 1rem 0 1rem 1.5rem;
+  line-height: 1.5;
+}
+.comparison th {
+  text-align: left;
+  width: 14%;
+  background-color: #dfe3e5;
+}
+@media (min-width: 768px) {
+  .comparison th th {
+    text-align: center;
+  }
+  .comparison th td {
+    width: 30%;
+    text-align: center;
+  }
+}
+
+.jumbotron {
+  margin: 0 -1rem;
+  position: relative;
+  background-color: #000;
+}
+.jumbotron__title {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+.jumbotron__title h1 {
+  font-size: 2.25rem;
+  text-align: center;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.jumbotron__title p {
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.25;
+}
+.jumbotron__arrow {
+  position: absolute;
+  bottom: 32px;
+  left: calc(50% - 24px);
+  z-index: 3;
+}
+.jumbotron__arrow a {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  position: relative;
+  color: #fff;
+}
+.jumbotron__arrow a::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid currentColor;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  transform: rotate(45deg);
+  position: absolute;
+  top: calc(50% - 6px);
+  left: calc(50% - 6px);
+  margin-top: -4px;
+}
+.jumbotron__arrow a:hover {
+  color: #52bbf1;
+}
+.jumbotron__video {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.jumbotron__video video {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    margin: 0 -2rem;
+  }
+  .jumbotron__title {
+    height: 900px;
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+  .jumbotron__title h1 {
+    font-size: 4rem;
+  }
+  .jumbotron__title p {
+    font-size: 1rem;
+  }
+  .jumbotron__arrow {
+    bottom: 96px;
+    left: calc(50% - 32px);
+  }
+  .jumbotron__arrow a {
+    width: 64px;
+    height: 64px;
+  }
+  .jumbotron__arrow a::after {
+    width: 12px;
+    height: 12px;
+    top: calc(50% - 6px);
+    left: calc(50% - 6px);
+    margin-top: -4px;
+  }
+}
+
+.jumbotron--pagetitle .jumbotron__title {
+  padding-top: 64px;
+  height: 256px;
+}
+.jumbotron--pagetitle .jumbotron__title h1 {
+  font-size: 2rem;
+  text-transform: none;
+}
+@media (min-width: 768px) {
+  .jumbotron--pagetitle .jumbotron__title {
+    padding-top: 88px;
+    height: 448px;
+  }
+  .jumbotron--pagetitle .jumbotron__title h1 {
+    font-size: 2rem;
+  }
+}
+
+.main-content,
+.main-content2,
+.main-content3 {
+  justify-content: flex-end;
+}
+.main-content + .main-content2,
+.main-content2 + .main-content2,
+.main-content3 + .main-content2 {
+  margin-top: 6rem;
+}
+@media (min-width: 580px) {
+  .main-content + .main-content2,
+.main-content2 + .main-content2,
+.main-content3 + .main-content2 {
+    margin-top: 24rem;
+  }
+}
+.main-content + .main-content3,
+.main-content2 + .main-content3,
+.main-content3 + .main-content3 {
+  margin-top: 6rem;
+}
+@media (min-width: 580px) {
+  .main-content + .main-content3,
+.main-content2 + .main-content3,
+.main-content3 + .main-content3 {
+    margin-top: 24rem;
+  }
+}
+.main-content + .main-content4,
+.main-content2 + .main-content4,
+.main-content3 + .main-content4 {
+  margin-top: 6rem;
+}
+@media (min-width: 580px) {
+  .main-content + .main-content4,
+.main-content2 + .main-content4,
+.main-content3 + .main-content4 {
+    margin-top: 12rem;
+  }
+}
+.main-content__title,
+.main-content2__title,
+.main-content3__title {
+  display: flex;
+  align-items: flex-end;
+}
+.main-content__title h1,
+.main-content2__title h1,
+.main-content3__title h1 {
+  font-size: 2.5rem;
+  padding-bottom: 2rem;
+  position: relative;
+  letter-spacing: 0.1em;
+}
+@media (min-width: 768px) {
+  .main-content__title h1,
+.main-content2__title h1,
+.main-content3__title h1 {
+    font-size: 6rem;
+  }
+}
+.main-content__title h1::after,
+.main-content2__title h1::after,
+.main-content3__title h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0.625rem;
+  left: 0;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #000;
+}
+.main-content__title .h1-ruby,
+.main-content2__title .h1-ruby,
+.main-content3__title .h1-ruby {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+@media (min-width: 768px) {
+  .main-content__title .h1-ruby,
+.main-content2__title .h1-ruby,
+.main-content3__title .h1-ruby {
+    font-size: 1.25rem;
+  }
+}
+.main-content__detail,
+.main-content2__detail,
+.main-content3__detail {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #000;
+}
+@media (min-width: 768px) {
+  .main-content__detail,
+.main-content2__detail,
+.main-content3__detail {
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+  }
+}
+.main-content__btn a,
+.main-content2__btn a,
+.main-content3__btn a {
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  align-items: center;
+  padding: 2rem 0;
+  transition: 0.3s;
+  border-bottom: 1px solid #000;
+  color: #000;
+}
+@media (min-width: 373px) {
+  .main-content__btn a,
+.main-content2__btn a,
+.main-content3__btn a {
+    width: 373px;
+  }
+}
+.main-content__btn a:hover,
+.main-content2__btn a:hover,
+.main-content3__btn a:hover {
+  padding-left: 0.5rem;
+  background-color: #fff;
+  color: #009BEA;
+}
+.main-content__btn a:hover::after,
+.main-content2__btn a:hover::after,
+.main-content3__btn a:hover::after {
+  transform: translateX(-8px);
+}
+.main-content__btn a::after,
+.main-content2__btn a::after,
+.main-content3__btn a::after {
+  content: "";
+  position: relative;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid currentColor;
+  transition: transform 0.5s;
+}
+
+@media (min-width: 672px) {
+  .main-content,
+.main-content2 {
+    width: 672px;
+  }
+}
+
+.main-content2 {
+  margin-left: auto;
+}
+
+.main-content3__detail {
+  border: none;
+}
+
+.main-content4 {
+  background-color: #009BEA;
+  margin-left: calc((100vw - 100%) / 2 * -1);
+  margin-right: calc((100vw - 100%) / 2 * -1);
+}
+.main-content4__bg {
+  max-width: 688px;
+  padding: 8rem 1rem;
+  margin: 0 auto;
+}
+.main-content4__title {
+  display: flex;
+  align-items: flex-end;
+}
+.main-content4__title h1 {
+  font-size: 2.5rem;
+  padding-bottom: 2rem;
+  position: relative;
+  letter-spacing: 0.1em;
+}
+@media (min-width: 768px) {
+  .main-content4__title h1 {
+    font-size: 6rem;
+  }
+}
+.main-content4__title h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0.625rem;
+  left: 0;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #000;
+}
+.main-content4__title .h1-ruby {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+@media (min-width: 768px) {
+  .main-content4__title .h1-ruby {
+    font-size: 1.25rem;
+  }
+}
+.main-content4__detail {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #000;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .main-content4__detail {
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+  }
+}
+.main-content4__btn2 a {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  padding: 2rem 0;
+  border: 1px solid #000;
+  border-radius: 50vh;
+  transition: 0.5s;
+  text-align: center;
+  color: #000;
+}
+.main-content4__btn2 a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  background-color: #000;
+  border-radius: 50vh;
+}
+.main-content4__btn2 a::after {
+  content: "";
+  position: absolute;
+  top: 39%;
+  right: 34px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid #009BEA;
+}
+.main-content4__btn2 a:hover {
+  color: #009BEA;
+  text-decoration: none;
+  background-color: #fff;
+}
+.main-content4__btn2 a:hover::before {
+  background-color: #009BEA;
+}
+.main-content4__btn2 a:hover::after {
+  border-left: 10px solid #fff;
+}
+.breadcrumbtrail {
+  background-color: #f9f9fa;
+  padding: 1rem;
+  margin: 0 -1rem;
+}
+.breadcrumbtrail ul {
+  display: flex;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.breadcrumbtrail ul li a {
+  font-size: 0.75rem;
+  color: #000;
+}
+.breadcrumbtrail ul li a:hover {
+  color: #009BEA;
+}
+.breadcrumbtrail ul li + li {
+  display: flex;
+  align-items: center;
+}
+.breadcrumbtrail ul li + li::before {
+  display: block;
+  flex-shrink: 0;
+  margin: 0 1rem;
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: 1px solid currentColor;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotate(45deg);
+  position: relative;
+}
+@media (min-width: 768px) {
+  .breadcrumbtrail {
+    margin: 0 -2rem;
+    padding: 1rem 2rem;
+  }
+}
+
+.join-card__cell {
+  border: 1px solid #009BEA;
+  text-align: center;
+}
+.join-card__cell--title {
+  padding: 1rem;
+}
+.join-card__cell--title p {
+  padding-top: 0.5rem;
+  color: #000;
+}
+.join-card__cell--detail {
+  background-color: #f9f9fa;
+  padding: 1rem;
+}
+.join-card__cell--detail p {
+  color: #009BEA;
+}
+@media (min-width: 970px) {
+  .join-card__cell {
+    display: flex;
+  }
+  .join-card__cell--title {
+    width: 20%;
+  }
+  .join-card__cell--detail {
+    width: 80%;
+    text-align: left;
+  }
+}
+.join-card .triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-top: 11px solid #009BEA;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+}
+.contact-link {
+  border-left: 2px solid #009BEA;
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
+.contact-link .address {
+  /*&:hover {
+    opacity: 0.5;
+  }*/
+}
+
+.news .news-list {
+  border-bottom: 1px solid #000;
+  padding-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .news .news-list {
+    display: flex;
+  }
+}
+.news .news-list + .news-list {
+  padding-top: 1.5rem;
+}
+.news .news-list__header--date {
+  padding-right: 1rem;
+}
+.news .news-list__body {
+  display: flex;
+  margin-top: 0.5rem;
+}
+@media (min-width: 768px) {
+  .news .news-list__body {
+    margin-top: 0;
+  }
+}
+.news .news-list__body a {
+  color: #000;
+}
+.news .news-list__body a:hover {
+  color: #009BEA;
+}
+
+/* ========================================================
+  Hamburger Trigger
+======================================================== */
+/* Variables
+++++++++++++++++++++++++++++++++ */
+/* Styles
+++++++++++++++++++++++++++++++++ */
+.hamburger-trigger {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hamburger-trigger {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  letter-spacing: inherit;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  outline: none;
+  flex-shrink: 0;
+  line-height: 1.15;
+  border-radius: 4px;
+  width: 64px;
+  height: 64px;
+  color: #009BEA;
+  background-color: #fff;
+}
+.hamburger-trigger__icon-bar::before, .hamburger-trigger__icon-bar::after, .hamburger-trigger__icon::before, .hamburger-trigger__icon::after {
+  display: block;
+  padding: 0;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  content: "";
+}
+
+.hamburger-trigger__icon {
+  display: block;
+  padding: 0;
+  margin: auto;
+  position: relative;
+  width: 24px;
+  height: 16px;
+}
+.hamburger-trigger__icon::before, .hamburger-trigger__icon::after {
+  transition: transform 0.5s;
+}
+.hamburger-trigger__icon-bar {
+  display: block;
+  padding: 0;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: width 0.5s;
+}
+.hamburger-trigger__icon-bar::before {
+  bottom: auto;
+}
+.hamburger-trigger__icon-bar::after {
+  top: auto;
+}
+.is-navigation-open .hamburger-trigger__icon::before, .is-navigation-open .hamburger-trigger__icon-bar, .is-navigation-open .hamburger-trigger__icon::after {
+  margin: auto;
+  transform-origin: center center;
+}
+.is-navigation-open .hamburger-trigger__icon::before {
+  transform: rotate(45deg);
+  margin-top: auto;
+}
+.is-navigation-open .hamburger-trigger__icon-bar {
+  width: 0;
+}
+.is-navigation-open .hamburger-trigger__icon::after {
+  transform: rotate(-45deg);
+  margin-bottom: auto;
+}
+
+.hamburger-trigger__text {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 1.15em;
+  flex-grow: 1;
+  font-weight: bold;
+  margin-top: 4px;
+  font-size: 0.6875em;
+}
+.hamburger-trigger__text::before, .hamburger-trigger__text::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: top 0.5s, opacity 0.5s;
+}
+.hamburger-trigger__text::before {
+  top: 0;
+  opacity: 1;
+  content: "MENU";
+}
+.hamburger-trigger__text::after {
+  top: -1em;
+  opacity: 0;
+  content: "CLOSE";
+}
+.is-navigation-open .hamburger-trigger__text::before {
+  top: -1em;
+  opacity: 0;
+}
+.is-navigation-open .hamburger-trigger__text::after {
+  top: 0;
+  opacity: 1;
+}
+
+.js-fix-wrapper {
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.is-navigation-open .js-fix-wrapper {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 64px);
+}
+
+/*
+テスト書き出し
+*/
+.block {
+  display: flex;
+}
+.block__element {
+  display: block;
+}
+.block.is-hoge {
+  display: block;
+}
+.block .element {
+  display: block;
+}
+.block:hover {
+  background-color: #009BEA;
+}/*# sourceMappingURL=global-dev.css.map */

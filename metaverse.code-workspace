@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "./"
+		}
+	],
+	"settings": {
+		"liveSassCompile.settings.generateMap": true,
+		"liveSassCompile.settings.formats": [
+			{
+				"format": "expanded",
+				"extensionName": "-dev.css",
+				"savePath": "/assets/css/"
+			},
+			{
+				"format": "compressed",
+				"extensionName": ".min.css",
+				"savePath": "/assets/css/"
+			},
+		],
+	}
+}

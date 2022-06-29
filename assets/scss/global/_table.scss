@@ -1,0 +1,121 @@
+.about {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 3.0rem;
+
+  tr {
+    background-color: $color-gray-100;
+
+    &:nth-child(even) {
+      background-color: #fff;
+    }
+  }
+
+  th,
+  td {
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    line-height: 1.5;
+    display: block;
+    width: 100%;
+
+    @include media-min() {
+      padding: 1.0rem 0 1.0rem 1.5rem;
+      display: table-cell;
+    }
+  }
+
+  td {
+
+    +td {
+      border-top: 1px dotted $color-gray-200;
+
+      @include media-min() {
+        border-style: none;
+      }
+    }
+
+    @include media-min() {
+      width: auto;
+
+      &:not(:last-child) {
+        width: 1%;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  th {
+    text-align: left;
+    width: 14%;
+    background-color: $color-gray-200;
+
+
+    @include media-min() {
+
+      th,
+      td {}
+
+      th {
+        text-align: center;
+      }
+
+      td {
+        width: 30%;
+        text-align: center;
+      }
+    }
+  }
+
+  a {
+    color: $color-primary;
+
+    &:hover {
+      color: $color-hover;
+    }
+  }
+}
+
+.comparison {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 3.0rem;
+
+  tr {
+    background-color: $color-gray-100;
+
+
+    &:nth-child(even) {
+      background-color: #fff;
+    }
+  }
+
+  th,
+  td {
+    padding: 1.0rem 0 1.0rem 1.5rem;
+    line-height: 1.5;
+  }
+
+  td {}
+
+  th {
+    text-align: left;
+    width: 14%;
+    background-color: $color-gray-200;
+
+
+    @include media-min() {
+
+      th,
+      td {}
+
+      th {
+        text-align: center;
+      }
+
+      td {
+        width: 30%;
+        text-align: center;
+      }
+    }
+  }
+}

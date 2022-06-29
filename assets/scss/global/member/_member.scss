@@ -1,0 +1,72 @@
+.join-card {
+  @include media-min(970) {
+    //display: flex;
+    //align-items: center;
+  }
+
+  &__cell {
+    border: 1px solid $color-primary;
+    text-align: center;
+
+    &--title {
+      padding: 1.0rem;
+
+      img {}
+
+      p {
+        padding-top: 0.5rem;
+        color: #000;
+      }
+    }
+
+    &--detail {
+      background-color: $color-gray-100;
+      padding: 1.0rem;
+
+      p {
+        color: $color-primary;
+      }
+    }
+
+    @include media-min(970) {
+      display: flex;
+
+      &--title {
+        width: calc((100% / 5) * 1);
+      }
+
+      &--detail {
+        width: calc((100% / 5) * 4);
+        text-align: left;
+      }
+    }
+  }
+
+  .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-top: 11px solid $color-primary;
+    margin: 0 auto;
+    margin-bottom: 1.5rem;
+
+    @include media-min(970) {
+      //transform: rotate(-90deg);
+      //margin-bottom: 0;
+    }
+  }
+}
+
+.contact-link {
+  border-left: 2px solid $color-primary;
+  padding-left: 1.0rem;
+  margin-top: 1.0rem;
+
+  .address {
+    /*&:hover {
+      opacity: 0.5;
+    }*/
+  }
+}

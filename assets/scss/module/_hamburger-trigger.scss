@@ -1,0 +1,252 @@
+@charset 'UTF-8';
+/* ========================================================
+  Hamburger Trigger
+======================================================== */
+/* Variables
+++++++++++++++++++++++++++++++++ */
+$c-hamburger-trigger-change-class-name: '.is-navigation-open' !default;
+$c-hamburger-trigger-border-radius: 4px !default;
+$c-hamburger-trigger-width: 64px !default;
+$c-hamburger-trigger-height: 64px !default;
+$c-hamburger-trigger-color: $color-primary !default;
+$c-hamburger-trigger-color-bg: #fff !default;
+$c-hamburger-trigger-hover-color: $color-primary !default;
+$c-hamburger-trigger-hover-color-bg: #fff !default;
+$c-hamburger-trigger-close-color: $color-primary !default;
+$c-hamburger-trigger-close-color-bg: #fff !default;
+$c-hamburger-trigger-close-hover-color: $color-primary !default;
+$c-hamburger-trigger-close-hover-color-bg: #fff !default;
+
+$c-hamburger-icon-class-name: '.hamburger-trigger__icon' !default;
+$c-hamburger-icon-width: 24px !default;
+$c-hamburger-icon-height: 16px !default;
+$c-hamburger-icon-line-weight: 1px !default;
+$c-hamburger-icon-transition-time: 0.5s !default;
+
+$c-hamburger-text-class-name: '.hamburger-trigger__text' !default;
+$c-hamburger-text-weight: bold !default;
+$c-hamburger-text-margin-top: 4px !default;
+$c-hamburger-text-font-size: 0.6875em !default;
+$c-hamburger-text-before: 'MENU' !default;
+$c-hamburger-text-after: 'CLOSE' !default;
+
+$c-hamburger-wrapper-class-name: '.js-fix-wrapper' !default;
+
+$header-size-sp: 64px;
+
+/* Styles
+++++++++++++++++++++++++++++++++ */
+
+.hamburger-trigger {
+  appearance: none;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hamburger-trigger {
+  @include button-reset;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  outline: none;
+  flex-shrink: 0;
+  line-height: 1.15;
+
+  border-radius: $c-hamburger-trigger-border-radius;
+  width: $c-hamburger-trigger-width;
+  height: $c-hamburger-trigger-height;
+
+  color: $c-hamburger-trigger-color;
+  background-color: $c-hamburger-trigger-color-bg;
+
+  &:hover {
+
+    @if $c-hamburger-trigger-color !=$c-hamburger-trigger-hover-color {
+      color: $c-hamburger-trigger-hover-color;
+    }
+
+    @if $c-hamburger-trigger-color-bg !=$c-hamburger-trigger-hover-color-bg {
+      background-color: $c-hamburger-trigger-hover-color-bg;
+    }
+
+  }
+
+  .is-navigation-open & {
+    @if $c-hamburger-trigger-color !=$c-hamburger-trigger-close-color {
+      color: $c-hamburger-trigger-close-color;
+    }
+
+    @if $c-hamburger-trigger-color-bg !=$c-hamburger-trigger-close-color-bg {
+      background-color: $c-hamburger-trigger-close-color-bg;
+    }
+
+    &:hover {
+      @if $c-hamburger-trigger-hover-color !=$c-hamburger-trigger-close-hover-color {
+        color: $c-hamburger-trigger-close-hover-color;
+      }
+
+      @if $c-hamburger-trigger-hover-color-bg !=$c-hamburger-trigger-close-hover-color-bg {
+        background-color: $c-hamburger-trigger-close-hover-color-bg;
+      }
+    }
+  }
+
+}
+
+%hamburger-bar {
+  display: block;
+  padding: 0;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: $c-hamburger-icon-line-weight;
+  background-color: currentColor;
+  content: '';
+}
+
+#{$c-hamburger-icon-class-name} {
+  display: block;
+  padding: 0;
+  margin: auto;
+  position: relative;
+  width: $c-hamburger-icon-width;
+  height: $c-hamburger-icon-height;
+
+  &::before,
+  &::after {
+    @extend %hamburger-bar;
+    transition: transform $c-hamburger-icon-transition-time;
+  }
+
+  &::before {}
+
+  &-bar {
+    display: block;
+    padding: 0;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: width $c-hamburger-icon-transition-time;
+
+    &::before,
+    &::after {
+      @extend %hamburger-bar;
+    }
+
+    &::before {
+      bottom: auto;
+    }
+
+    &::after {
+      top: auto;
+    }
+  }
+
+  &::after {}
+
+  #{$c-hamburger-trigger-change-class-name} & {
+
+    &::before,
+    &-bar,
+    &::after {
+      margin: auto;
+      transform-origin: center center;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+      margin-top: auto;
+    }
+
+    &-bar {
+      width: 0;
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+      margin-bottom: auto;
+    }
+  }
+}
+
+#{$c-hamburger-text-class-name} {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: calc(1em * 1.15);
+  flex-grow: 1;
+  font-weight: $c-hamburger-text-weight;
+  margin-top: $c-hamburger-text-margin-top;
+  font-size: $c-hamburger-text-font-size;
+
+  &::before,
+  &::after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: top $c-hamburger-icon-transition-time,
+      opacity $c-hamburger-icon-transition-time;
+  }
+
+  &::before {
+    top: 0;
+    opacity: 1;
+    content: $c-hamburger-text-before;
+
+  }
+
+  &::after {
+    top: -1em;
+    opacity: 0;
+    content: $c-hamburger-text-after;
+  }
+
+  #{$c-hamburger-trigger-change-class-name} & {
+
+    &::before {
+      top: -1em;
+      opacity: 0;
+
+    }
+
+    &::after {
+      top: 0;
+      opacity: 1;
+    }
+  }
+}
+
+
+#{$c-hamburger-wrapper-class-name} {
+  padding: 0;
+  margin: 0;
+  position: relative;
+
+  #{$c-hamburger-trigger-change-class-name} & {
+    position: fixed;
+    top: $header-size-sp;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - $header-size-sp);
+  }
+}

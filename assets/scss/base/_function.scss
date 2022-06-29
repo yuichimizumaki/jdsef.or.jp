@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+/*====================================
+  0. Base Function
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Map Deep Get
+    - 2. REM Calculator
+    - 3. Line Height Calculator
+    - 4. Strip Unit
+    - 5. Tint & Shade Color
+    
+    ----------------------------------
+    Introduction
+    ----------------------------------
+    
+    ----------------------------------
+    Constitution
+    ----------------------------------
+    
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/07/20   Founding
+    
+====================================*/
+/*====================================
+
+  - 1. Map Deep Get
+--------------------------------------
+  ネストされたmapを取得できる
+  map-deep-get()
+
+====================================*/
+@function map-deep-get($map, $keys) {
+  @each $key in $keys {
+    @if not map-has-key($map, $key) {
+      @return null;
+    }
+
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+
+
+@function map-has-keys($map, $keys) {
+  @each $key in $keys {
+    @if not map-has-key($map, $key) {
+      @return false;
+    }
+  }
+
+  @return true;
+}
+
+/*====================================
+
+  - 2. REM Calculator
+--------------------------------------
+  px -> rem の計算機
+  $basic-font-size必須
+  rem-calc(number);
+
+====================================*/
+/*
+*{
+  font-size: rem-calc(14);
+}
+*{
+  font-size: 0.875rem;
+}
+*/
+
+@function rem-calc($size, $base: $basic-font-size) {
+  @return ($size / $base)+rem;
+}
+
+/*
+*{
+  font-size: px-rem-calc(0.875);
+}
+*{
+  font-size: 14px;
+}
+*/
+@function px-rem-calc($size, $base: $basic-font-size) {
+  @return ($size * $base)+px;
+}
+
+/*
+*{
+  font-size: em-calc(14);
+}
+*{
+  font-size: 0.875em;
+}
+*{
+  font-size: em-calc(16,14);
+}
+*{
+  font-size: 1.125em;
+}
+*/
+@function em-calc($size, $base: $basic-font-size) {
+  @return ($size / $base)+em;
+}
+
+/*
+*{
+  width: basic-size(2);
+}
+*{
+  width: 32px;
+}
+*/
+@function basic-size($size, $base: $basic-font-size) {
+  @return ($size * $base)+px;
+}
+
+/*====================================
+
+  - 3. Line Height Calculator
+--------------------------------------
+  line-height の計算機
+  px からで 比率計算できる
+  $basic-font-size必須
+  line-height-cal(line-height, font-size);
+
+====================================*/
+/*
+*{
+  line-height: line-height-calc(32);
+}
+*{
+  line-height: 2.0
+}
+*/
+@function line-height-calc($size, $base: $basic-font-size) {
+  @return ($size / $base);
+}
+
+/*====================================
+
+  - 4. Strip Unit
+--------------------------------------
+  単位がある数値を数値だけにする
+
+====================================*/
+
+@function strip-unit($number) {
+  @if type-of($number)=='number'and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+/*====================================
+
+  - 5. Tint & Shade Color
+--------------------------------------
+  色に白や黒を混ぜる
+  $theme-color-interval は混ぜる割合
+  
+  $color-100: tint-color($color, 8);
+  $color-200: tint-color($color, 6);
+  $color-300: tint-color($color, 4);
+  $color-400: tint-color($color, 2);
+  $color-500: $color;
+  $color-600: shade-color($color, 2);
+  $color-700: shade-color($color, 4);
+  $color-800: shade-color($color, 6);
+  $color-900: shade-color($color, 8);
+
+====================================*/
+
+$theme-color-interval: 8%;
+
+@function tint-color($color, $level) {
+  @return mix(white, $color, $level * $theme-color-interval);
+}
+
+@function shade-color($color, $level) {
+  @return mix(black, $color, $level * $theme-color-interval);
+}
+
+@function breakpoint-class($media: '', $sprit: \:) {
+  @if $media !='' {
+    @return #{$sprit}#{$media};
+  }
+
+  @else {
+    @return '';
+  }
+}

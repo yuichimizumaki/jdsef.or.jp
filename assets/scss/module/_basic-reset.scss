@@ -1,0 +1,552 @@
+/*! powered by Basic Assets : v1.0.7 */
+/*====================================
+  Basic Assets Styles
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Resets Modules
+    
+    ----------------------------------
+    Introduction
+    ----------------------------------
+    ----------------------------------
+    Constitution
+    ----------------------------------
+    
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/04/17   Founding
+    
+====================================*/
+/*====================================
+
+  - 1. Resets Modules
+--------------------------------------
+
+====================================*/
+/*====================================
+  0. Reset Style
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 0. Full Reset
+    - 1. Border Box
+    - 2. Objects
+    - 3. List reset
+    - 4. Blockquote reset
+    - 5. link tag
+    - 6. hr
+    - 7. Computer code
+    - 8. Form
+    
+    ----------------------------------
+    Introduction
+    ----------------------------------
+    
+    ----------------------------------
+    Constitution
+    ----------------------------------
+    child of
+    /basic-assets/scss/_basic-style.scss
+    
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2019/11/21   Founding
+    
+====================================*/
+/*====================================
+
+  - 0. Full Reset
+--------------------------------------
+
+====================================*/
+@-ms-viewport {
+  width: device-width;
+}
+
+html {
+  line-height: 1;
+  /* normalize.css */
+  -webkit-text-size-adjust: 100%;
+  /* normalize.css */
+  -ms-overflow-style: scrollbar;
+  /* from bootstrap */
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+figure,
+header,
+main,
+footer,
+menu,
+nav,
+section,
+time,
+mark,
+audio,
+video,
+details,
+summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: inherit;
+  vertical-align: baseline;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+article,
+aside,
+figure,
+header,
+main,
+footer,
+nav,
+section,
+details,
+summary {
+  display: block;
+}
+
+html * {
+  max-height: 999999px;
+}
+
+/*====================================
+
+  - 1. Border Box
+--------------------------------------
+
+====================================*/
+*,
+*::after,
+*::before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1;
+  /*
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;*/
+}
+
+:invalid,
+:-moz-submit-invalid,
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*====================================
+
+  - 2. Objects
+--------------------------------------
+
+====================================*/
+img,
+object,
+embed {
+  max-width: 100%;
+}
+
+/*====================================
+
+  - 3. List reset
+--------------------------------------
+]
+====================================*/
+/* we use a lot of ULs that aren't bulleted. don't forget to restore the bullets within content. */
+ul,
+ol {
+  list-style: none;
+}
+
+/*====================================
+
+  - 4. Blockquote reset
+--------------------------------------
+
+====================================*/
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none;
+}
+
+/*====================================
+
+  - 5. link tag
+--------------------------------------
+
+====================================*/
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+/*====================================
+
+  - 6. hr
+--------------------------------------
+
+====================================*/
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/*====================================
+
+  - 7. Computer code
+--------------------------------------
+
+====================================*/
+/* standardize any monospaced elements */
+pre {
+  white-space: pre;
+  /* CSS2 */
+  white-space: pre-wrap;
+  /* CSS 2.1 */
+  white-space: pre-line;
+  /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word;
+  /* IE */
+  font-size: 1em;
+  /* nomalize.css */
+}
+
+/*====================================
+
+  - 8. Form
+--------------------------------------
+
+====================================*/
+/* hand cursor on clickable elements */
+.is-clickable,
+label,
+input[type="button"],
+input[type="submit"],
+input[type="file"],
+input[type="range"],
+button {
+  cursor: pointer;
+}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-size: 100%;
+  font: inherit;
+}
+
+/* make buttons play nice in IE */
+button,
+input[type="button"] {
+  width: auto;
+  overflow: visible;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+input[type="radio"] {
+  vertical-align: text-bottom;
+}
+
+input[type="checkbox"] {
+  vertical-align: bottom;
+}
+
+select,
+input,
+textarea {
+  font-size: 100%;
+}
+
+/*
+Show the overflow in IE.
+1. Show the overflow in Edge.
+*/
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/*
+Remove the inheritance of text transform in Edge, Firefox, and IE.
+1. Remove the inheritance of text transform in Firefox.
+*/
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/*
+Correct the inability to style clickable types in iOS and Safari.
+*/
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/*
+Remove the inner border and padding in Firefox.
+*/
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/*
+Restore the focus styles unset by the previous rule.
+*/
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/*
+Correct the padding in Firefox.
+*/
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/*
+1. Correct the text wrapping in Edge and IE.
+2. Correct the color inheritance from `fieldset` elements in IE.
+3. Remove the padding so developers are not caught out when they zero out fieldset` elements in all browsers.
+*/
+legend {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+
+/*
+Add the correct vertical alignment in Chrome, Firefox, and Opera.
+*/
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Remove the default vertical scrollbar in IE 10+.
+*/
+textarea {
+  overflow: auto;
+}
+
+/*
+1. Add the correct box sizing in IE 10.
+2. Remove the padding in IE 10.
+*/
+[type="checkbox"],
+[type="radio"] {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Chrome.
+*/
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+@charset 'UTF-8';
+/* Align Utility Style
+================================ */
+/* Default Variables
+++++++++++++++++++++++++++++++++ */
+$prefix-u-align-class: 'align' !default;
+/* Align Array
+-------------------------------- */
+$u-align-type: left,
+center,
+right,
+justify !default;
+/* Vertical Align Array
+-------------------------------- */
+$u-vertical-align-type: top,
+text-top,
+middle,
+baseline,
+text-bottom,
+bottom !default;
+$u-align-assets: (
+  /* array */
+  text:($u-align-type),
+  vertical:($u-vertical-align-type),
+  /* array */
+) !default;
+
+/* Function
+++++++++++++++++++++++++++++++++ */
+@function aligns($key) {
+  @return map-get($u-align-assets, $key);
+}
+
+/* mixin
+++++++++++++++++++++++++++++++++ */
+/* Extend
+++++++++++++++++++++++++++++++++ */
+/* Style
+++++++++++++++++++++++++++++++++ */
+/* Align Parts
+-------------------------------- */
+#{$prefix-u-align-class} {
+
+  @each $keys,
+  $values in $u-align-assets {
+    @each $value in $values {
+      &-#{$value} {
+        #{$keys}-align: $value !important;
+      }
+    }
+  }
+}
+
+/* breakpoint
+-------------------------------- */
+@each $name in $utility-breakpoint {
+  #{$prefix-u-align-class} {
+    @include media-min($name) {
+      $breakpoint-class: breakpoint-class($name);
+
+      @each $value in $u-align-type {
+        &-#{$value+$breakpoint-class} {
+          text-align: $value !important;
+        }
+      }
+    }
+  }
+}

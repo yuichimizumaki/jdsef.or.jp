@@ -1,0 +1,1439 @@
+@charset "UTF-8";
+/*! Global Styles */
+/*====================================
+  *. Global
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Base Import
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+
+    ----------------------------------
+    Constitution
+    ----------------------------------
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/07/20   Founding
+
+====================================*/
+/*====================================
+
+  - 1. Base Import
+--------------------------------------
+  まずはbasic-styleと
+  君が作るブランクの
+  - variables
+  - function
+  - mixin を読み込むぞ
+
+====================================*/
+/*====================================
+  0. Base Function
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Map Deep Get
+    - 2. REM Calculator
+    - 3. Line Height Calculator
+    - 4. Strip Unit
+    - 5. Tint & Shade Color
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+
+    ----------------------------------
+    Constitution
+    ----------------------------------
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/07/20   Founding
+
+====================================*/
+/*====================================
+
+  - 1. Map Deep Get
+--------------------------------------
+  ネストされたmapを取得できる
+  map-deep-get()
+
+====================================*/
+/*====================================
+
+  - 2. REM Calculator
+--------------------------------------
+  px -> rem の計算機
+  $basic-font-size必須
+  rem-calc(number);
+
+====================================*/
+/*
+*{
+  font-size: rem-calc(14);
+}
+*{
+  font-size: 0.875rem;
+}
+*/
+/*
+*{
+  font-size: px-rem-calc(0.875);
+}
+*{
+  font-size: 14px;
+}
+*/
+/*
+*{
+  font-size: em-calc(14);
+}
+*{
+  font-size: 0.875em;
+}
+*{
+  font-size: em-calc(16,14);
+}
+*{
+  font-size: 1.125em;
+}
+*/
+/*
+*{
+  width: basic-size(2);
+}
+*{
+  width: 32px;
+}
+*/
+/*====================================
+
+  - 3. Line Height Calculator
+--------------------------------------
+  line-height の計算機
+  px からで 比率計算できる
+  $basic-font-size必須
+  line-height-cal(line-height, font-size);
+
+====================================*/
+/*
+*{
+  line-height: line-height-calc(32);
+}
+*{
+  line-height: 2.0
+}
+*/
+/*====================================
+
+  - 4. Strip Unit
+--------------------------------------
+  単位がある数値を数値だけにする
+
+====================================*/
+/*====================================
+
+  - 5. Tint & Shade Color
+--------------------------------------
+  色に白や黒を混ぜる
+  $theme-color-interval は混ぜる割合
+
+  $color-100: tint-color($color, 8);
+  $color-200: tint-color($color, 6);
+  $color-300: tint-color($color, 4);
+  $color-400: tint-color($color, 2);
+  $color-500: $color;
+  $color-600: shade-color($color, 2);
+  $color-700: shade-color($color, 4);
+  $color-800: shade-color($color, 6);
+  $color-900: shade-color($color, 8);
+
+====================================*/
+/*====================================
+  01. Basic Variables
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Bacic Size
+    - 2. Breakpoints
+    - 3. Colors
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+
+    ----------------------------------
+    Constitution
+    ----------------------------------
+    child of
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/07/20   Founding
+
+====================================*/
+/*====================================
+
+  - 1. Bacic Font Size
+--------------------------------------
+  font-size と　line-height　共に
+  単位省略(px)して書いてね
+  両方とも<html>に設定されるよ
+
+  ここでのline-heightは
+  小さめにしとくといいと思う
+
+  ここでのline-heightは
+  小さめにしとくといいと思う
+
+  いろんなところで使う $basic-design-size
+  基本的に16かな
+
+====================================*/
+/* Font Size (px) */
+/* Line Height (px) */
+/* Design Size (px) */
+/*====================================
+
+  - 2. Breakpoints
+--------------------------------------
+
+====================================*/
+/*
+h1{
+  font-size: 1em;
+  @include media-min() {
+    font-size: 2em;
+  }
+  @include media-min(massive) {
+    font-size: 3em;
+  }
+  @include media-min(9999px) {
+    font-size: 4em;
+  }
+}
+*/
+/*------------------------------------
+  $breakpoints(map)を
+  取得するための @function
+------------------------------------*/
+/*====================================
+
+  - 3. Colors
+--------------------------------------
+
+====================================*/
+/* $color-primary */
+/* $color-secondary */
+/* $color-tertiary */
+/*====================================
+  0. Base MIXINS
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Font size
+    - 2. Media Queries width
+      2.1 Media Queries width base
+      2.2 Media Queries min
+      2.3 Media Queries max
+      2.4 Media Queries Only
+    - 3. Media Dark Mode
+    - 4. Media Portrait
+    - 5. Media Landscape
+    - 6. Button Reset
+    - 7. Size
+    - 8. Aspect Ratio
+    - 9. Background Cover
+    - 10. Padding & Margin
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+
+    ----------------------------------
+    Constitution
+    ----------------------------------
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/07/20   Founding
+
+====================================*/
+/*====================================
+
+  - 1. Font size
+--------------------------------------
+  font-size のem
+  line-heightを求めるmixin
+  基本数は$basic_font_sizeで設定
+
+  @include font-size(16);
+  output:
+  font-size: 1em;
+
+  @include font-size(16, 18);
+  output:
+  font-size: 1em;
+  line-height: 1.125;
+
+====================================*/
+/*====================================
+
+  - 2. Media Queries width
+--------------------------------------
+  @include media-min(999) { *** }
+  output:
+  @media (min-width: 999)  { *** }
+
+  @include media-max(999) { *** }
+  output:
+  @media (max-width: 999)  { *** }
+
+  @include media-only(999, 9999) { *** }
+  output:
+  @media (min-width: 999) and (max-width: 9999)  { *** }
+
+====================================*/
+/*------------------------------------
+  2.1 Media Queries width base
+------------------------------------*/
+/*------------------------------------
+  2.2 Media Queries min
+------------------------------------*/
+/*------------------------------------
+  2.3 Media Queries max
+------------------------------------*/
+/*------------------------------------
+  2.4 Media Queries Only
+------------------------------------*/
+/*====================================
+
+  - 3. Media Dark Mode
+--------------------------------------
+  ダークモード用
+
+  @include media-dark { *** }
+  output:
+  @media (prefers-color-scheme: dark)  { *** }
+
+====================================*/
+/*====================================
+
+  - 4. Media Portrait
+--------------------------------------
+  画面が縦長用
+
+  @include media-portrait { *** }
+  output:
+  @media (orientation: portrait)  { *** }
+
+====================================*/
+/*====================================
+
+  - 5. Media Landscape
+--------------------------------------
+  画面が横長用
+
+  @include media-landscape { *** }
+  output:
+  @media (orientation: landscape)  { *** }
+
+====================================*/
+/*====================================
+
+  - 6. Button Reset
+--------------------------------------
+  <button>スタイルをリセットするmixin
+
+  @include button-reset;
+
+====================================*/
+/*
+button {
+   @include button-reset;
+   color: #000;
+}
+*/
+/*====================================
+
+  - 7. Size
+--------------------------------------
+  widthとheightを設定するmixin
+
+  @include size(100px);
+  output:
+  width: 100px;
+  height: 100px;
+
+  @include size(100px, 200px);
+  output:
+  width: 100px;
+  height: 200px;
+
+====================================*/
+/*====================================
+
+  - 8. Aspect Ratio
+--------------------------------------
+  widthに対してpadding-topで高さを計算する
+
+====================================*/
+/*====================================
+
+  - 9. Background Cover
+--------------------------------------
+  background-size: cover;のためのmixin
+
+====================================*/
+/*
+.bg {
+  @include background-cover('../assets/bg-image.jpg');
+}
+*/
+/*====================================
+
+  - 10. Padding & Margin
+--------------------------------------
+  Padding と Margin のためのmixin
+
+====================================*/
+/*! powered by Basic Assets : v1.0.7 */
+/*====================================
+  Basic Assets Styles
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Resets Modules
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+    ----------------------------------
+    Constitution
+    ----------------------------------
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/04/17   Founding
+
+====================================*/
+/*====================================
+
+  - 1. Resets Modules
+--------------------------------------
+
+====================================*/
+/*====================================
+  0. Reset Style
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 0. Full Reset
+    - 1. Border Box
+    - 2. Objects
+    - 3. List reset
+    - 4. Blockquote reset
+    - 5. link tag
+    - 6. hr
+    - 7. Computer code
+    - 8. Form
+
+    ----------------------------------
+    Introduction
+    ----------------------------------
+
+    ----------------------------------
+    Constitution
+    ----------------------------------
+    child of
+    /basic-assets/scss/_basic-style.scss
+
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2019/11/21   Founding
+
+====================================*/
+/*====================================
+
+  - 0. Full Reset
+--------------------------------------
+
+====================================*/
+@-ms-viewport {
+  width: device-width;
+}
+html {
+  line-height: 1;
+  /* normalize.css */
+  -webkit-text-size-adjust: 100%;
+  /* normalize.css */
+  -ms-overflow-style: scrollbar;
+  /* from bootstrap */
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+figure,
+header,
+main,
+footer,
+menu,
+nav,
+section,
+time,
+mark,
+audio,
+video,
+details,
+summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: inherit;
+  vertical-align: baseline;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+article,
+aside,
+figure,
+header,
+main,
+footer,
+nav,
+section,
+details,
+summary {
+  display: block;
+}
+
+html * {
+  max-height: 999999px;
+}
+
+/*====================================
+
+  - 1. Border Box
+--------------------------------------
+
+====================================*/
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1;
+  /*
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;*/
+}
+
+:invalid,
+:-moz-submit-invalid,
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*====================================
+
+  - 2. Objects
+--------------------------------------
+
+====================================*/
+img,
+object,
+embed {
+  max-width: 100%;
+}
+
+/*====================================
+
+  - 3. List reset
+--------------------------------------
+]
+====================================*/
+/* we use a lot of ULs that aren't bulleted. don't forget to restore the bullets within content. */
+ul,
+ol {
+  list-style: none;
+}
+
+/*====================================
+
+  - 4. Blockquote reset
+--------------------------------------
+
+====================================*/
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
+  content: none;
+}
+
+/*====================================
+
+  - 5. link tag
+--------------------------------------
+
+====================================*/
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+/*====================================
+
+  - 6. hr
+--------------------------------------
+
+====================================*/
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/*====================================
+
+  - 7. Computer code
+--------------------------------------
+
+====================================*/
+/* standardize any monospaced elements */
+pre {
+  white-space: pre;
+  /* CSS2 */
+  white-space: pre-wrap;
+  /* CSS 2.1 */
+  white-space: pre-line;
+  /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word;
+  /* IE */
+  font-size: 1em;
+  /* nomalize.css */
+}
+
+/*====================================
+
+  - 8. Form
+--------------------------------------
+
+====================================*/
+/* hand cursor on clickable elements */
+.is-clickable,
+label,
+input[type=button],
+input[type=submit],
+input[type=file],
+input[type=range],
+button {
+  cursor: pointer;
+}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-size: 100%;
+  font: inherit;
+}
+
+/* make buttons play nice in IE */
+button,
+input[type=button] {
+  width: auto;
+  overflow: visible;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+input[type=radio] {
+  vertical-align: text-bottom;
+}
+
+input[type=checkbox] {
+  vertical-align: bottom;
+}
+
+select,
+input,
+textarea {
+  font-size: 100%;
+}
+
+/*
+Show the overflow in IE.
+1. Show the overflow in Edge.
+*/
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/*
+Remove the inheritance of text transform in Edge, Firefox, and IE.
+1. Remove the inheritance of text transform in Firefox.
+*/
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/*
+Correct the inability to style clickable types in iOS and Safari.
+*/
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+}
+
+/*
+Remove the inner border and padding in Firefox.
+*/
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/*
+Restore the focus styles unset by the previous rule.
+*/
+button:-moz-focusring,
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/*
+Correct the padding in Firefox.
+*/
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/*
+1. Correct the text wrapping in Edge and IE.
+2. Correct the color inheritance from `fieldset` elements in IE.
+3. Remove the padding so developers are not caught out when they zero out fieldset` elements in all browsers.
+*/
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+
+/*
+Add the correct vertical alignment in Chrome, Firefox, and Opera.
+*/
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Remove the default vertical scrollbar in IE 10+.
+*/
+textarea {
+  overflow: auto;
+}
+
+/*
+1. Add the correct box sizing in IE 10.
+2. Remove the padding in IE 10.
+*/
+[type=checkbox],
+[type=radio] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Chrome.
+*/
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+[type=search] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/* Align Utility Style
+================================ */
+/* Default Variables
+++++++++++++++++++++++++++++++++ */
+/* Align Array
+-------------------------------- */
+/* Vertical Align Array
+-------------------------------- */
+/* Function
+++++++++++++++++++++++++++++++++ */
+/* mixin
+++++++++++++++++++++++++++++++++ */
+/* Extend
+++++++++++++++++++++++++++++++++ */
+/* Style
+++++++++++++++++++++++++++++++++ */
+/* Align Parts
+-------------------------------- */
+align-left {
+  text-align: left !important;
+}
+align-center {
+  text-align: center !important;
+}
+align-right {
+  text-align: right !important;
+}
+align-justify {
+  text-align: justify !important;
+}
+align-top {
+  vertical-align: top !important;
+}
+align-text-top {
+  vertical-align: text-top !important;
+}
+align-middle {
+  vertical-align: middle !important;
+}
+align-baseline {
+  vertical-align: baseline !important;
+}
+align-text-bottom {
+  vertical-align: text-bottom !important;
+}
+align-bottom {
+  vertical-align: bottom !important;
+}
+
+/* breakpoint
+-------------------------------- */
+@media (min-width: 576px) {
+  align-left\:small {
+    text-align: left !important;
+  }
+  align-center\:small {
+    text-align: center !important;
+  }
+  align-right\:small {
+    text-align: right !important;
+  }
+  align-justify\:small {
+    text-align: justify !important;
+  }
+}
+
+@media (min-width: 768px) {
+  align-left\:medium {
+    text-align: left !important;
+  }
+  align-center\:medium {
+    text-align: center !important;
+  }
+  align-right\:medium {
+    text-align: right !important;
+  }
+  align-justify\:medium {
+    text-align: justify !important;
+  }
+}
+
+body {
+  font-family: "Roboto", "Noto Sans JP", "sans-serif";
+}
+
+a {
+  text-decoration: none;
+  color: #4587F5;
+}
+a:hover {
+  color: #E35E31;
+  transition: 0.5s;
+}
+
+.global-main {
+  background-color: #F9F9FA;
+  padding: 4rem 0;
+}
+
+.contents-space {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+@media (min-width: 1170px) {
+  .contents-space {
+    padding: 0;
+  }
+}
+
+.main-section {
+  background-color: #fff;
+  padding: 0 1rem;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 1170px) {
+  .main-section {
+    padding: 0 4rem;
+  }
+}
+
+.main-title {
+  color: #fff;
+  background-color: #000;
+  margin-bottom: 1.5rem;
+}
+
+.main-title__2 {
+  padding: 0 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000;
+  display: inline-block;
+  font-family: "Noto Serif JP", serif;
+  padding: 0.5rem 1rem;
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-family: "Noto Serif JP", serif;
+  border-bottom: 1px solid #000;
+  padding-bottom: 1rem;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  color: #0E3B74;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+p {
+  color: #22292D;
+  font-size: 1rem;
+  line-height: 28px;
+  margin-bottom: 1rem;
+}
+p span {
+  color: #E51C16;
+}
+p:last-child {
+  content: "";
+  margin-bottom: 0;
+}
+
+.round {
+  position: relative;
+  margin-left: 1em;
+  padding-left: 1rem;
+}
+.round::before {
+  content: "●";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -1em;
+  width: 1em;
+  padding-right: 1rem;
+}
+
+.br-sp {
+  display: inline;
+}
+@media (min-width: 780px) {
+  .br-sp {
+    display: none;
+  }
+}
+
+.global-header {
+  z-index: 100;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  align-items: center;
+  padding: 0.5rem;
+}
+.global-header__inner {
+  align-items: center;
+  padding: 0.5rem 0;
+  margin: 0 auto;
+}
+@media (min-width: 960px) {
+  .global-header__inner {
+    display: flex;
+  }
+}
+.global-header__logo {
+  width: 160px;
+}
+@media (min-width: 960px) {
+  .global-header__logo {
+    padding-left: 0;
+    width: 200px;
+  }
+}
+
+.hamburger {
+  display: block;
+  position: fixed;
+  z-index: 3;
+  right: 20px;
+  top: 20px;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  left: 6px;
+  background: #BBBBBB;
+  transition: 0.3s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+  top: 10px;
+}
+
+.hamburger span:nth-child(2) {
+  top: 20px;
+}
+
+.hamburger span:nth-child(3) {
+  top: 30px;
+}
+
+/* スマホメニューを開いてる時のボタン */
+.hamburger.active span:nth-child(1) {
+  top: 16px;
+  left: 6px;
+  background: #fff;
+  transform: rotate(-45deg);
+}
+
+.hamburger.active span:nth-child(2),
+.hamburger.active span:nth-child(3) {
+  top: 16px;
+  background: #fff;
+  transform: rotate(45deg);
+}
+
+/* メニュー背景　*/
+nav.globalMenuSp {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background: rgba(71, 70, 73, 0.6);
+  text-align: center;
+  width: 100%;
+  transform: translateX(100%);
+  transition: all 0.6s;
+}
+
+nav.globalMenuSp ul {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+
+nav.globalMenuSp ul li {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  transition: 0.4s all;
+}
+
+nav.globalMenuSp ul li:last-child {
+  padding-bottom: 0;
+}
+
+nav.globalMenuSp ul li:hover {
+  background: #ddd;
+}
+
+nav.globalMenuSp ul li a {
+  display: block;
+  color: #fff;
+  padding: 1em 0;
+  text-decoration: none;
+}
+
+/* クリックでjQueryで追加・削除 */
+nav.globalMenuSp.active {
+  opacity: 100;
+  display: block;
+  transform: translateX(0%);
+}
+
+/*====================================
+
+  - . .jumbotron
+--------------------------------------
+
+====================================*/
+.jumbotron {
+  position: relative;
+  margin: 0 auto;
+}
+.jumbotron__photo {
+  background-image: url(../img/jumbotron-back.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 400px;
+  padding: 2rem 0;
+  vertical-align: baseline;
+}
+@media (min-width: 580px) {
+  .jumbotron__photo {
+    height: 500px;
+  }
+}
+.jumbotron__text {
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  right: 0;
+}
+
+/*====================================
+
+  - . .株主の皆様へ
+--------------------------------------
+
+====================================*/
+.post {
+  background-color: #F9F9FA;
+  padding: 2rem;
+  position: relative;
+  margin-top: 2.5rem;
+}
+.post-head {
+  text-align: center;
+}
+.post-head__icon {
+  margin-bottom: 1rem;
+}
+.post-head__title {
+  border-bottom: 1px solid #000;
+  padding-bottom: 2rem;
+  font-size: 1.125rem;
+}
+.post-text {
+  margin-top: 2rem;
+  width: 375px;
+}
+@media (min-width: 520px) {
+  .post-text {
+    margin-left: auto;
+    margin-right: auto;
+    width: 422px;
+  }
+}
+
+/*====================================
+
+  - . .議案概要
+--------------------------------------
+
+====================================*/
+.description-list {
+  border: 1px solid #C5CCD0;
+  padding: 2rem 1rem;
+  margin-bottom: 0.5rem;
+}
+.description-list__title {
+  color: #0E3B74;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.125rem;
+  line-height: 28px;
+}
+.post2 {
+  margin-top: 2.5rem;
+}
+@media (min-width: 780px) {
+  .post2 {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.post2 .post-card {
+  background-color: #F9F9FA;
+  padding: 2rem;
+  position: relative;
+}
+.post2 .post-card:last-child {
+  content: "";
+  margin-top: 0.5rem;
+}
+@media (min-width: 780px) {
+  .post2 .post-card {
+    width: calc(50% - 16px);
+  }
+  .post2 .post-card:last-child {
+    content: "";
+    margin-top: 0rem;
+  }
+}
+.post2 .post-card__head {
+  text-align: center;
+}
+.post2 .post-card__head--icon {
+  margin-bottom: 1rem;
+}
+.post2 .post-card__head--title {
+  border-bottom: 1px solid #000;
+  padding-bottom: 2rem;
+  font-size: 1.125rem;
+}
+.post2 .post-card__text {
+  margin-top: 2rem;
+}
+
+/*====================================
+
+  - . .新任候補紹介
+--------------------------------------
+
+====================================*/
+.profile-section__data {
+  border: 1px solid #000;
+  padding: 1rem 2rem;
+}
+.profile-section__data--head {
+  border-bottom: 1px solid #000;
+  padding-bottom: 1rem;
+  line-height: 28px;
+}
+.profile-section__data--head .profile-data-nam {
+  font-family: "Noto Serif JP", serif;
+  font-size: 1.5rem;
+}
+.profile-section__data--head .profile-data-nam2 {
+  padding: 0 0.5rem;
+}
+.profile-section__data--text {
+  padding-top: 1rem;
+}
+
+/*====================================
+
+  - . .footer
+--------------------------------------
+
+====================================*/
+.footer-section {
+  text-align: center;
+}
+.footer-section__inner {
+  background-color: #333333;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 1rem 0;
+}
+
+/*無料口座開設*/
+.landing-link {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  max-width: 640px;
+  margin-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+.landing-link a {
+  display: block;
+  margin: 0 auto;
+  border-radius: 60px;
+  padding: 1.5rem 4rem 1.5rem;
+  background-color: #9C130F;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0px 3px 8px -5px rgba(0, 0, 0, 0.75), 0 7px 0 #B5331A;
+}
+.landing-link a::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  background-color: #E11C17;
+  transition: opacity 0.5s;
+  z-index: -1;
+}
+.p-btn:hover {
+  transition: 0.2s;
+  box-shadow: none;
+  position: relative;
+  top: 4px;
+  transition: 0.2s;
+}
+
+/*
+テスト書き出し
+*/
+.block {
+  display: flex;
+}
+.block__element {
+  display: block;
+}
+.block.is-hoge {
+  display: block;
+}
+.block .element {
+  display: block;
+}
+.block:hover {
+  background-color: #0E3B74;
+}/*# sourceMappingURL=global.css.map */

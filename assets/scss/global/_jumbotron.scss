@@ -1,0 +1,149 @@
+.jumbotron {
+  margin: 0 -1.0rem;
+  position: relative;
+  background-color: #000;
+
+  &__title {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    gap: 1.0rem;
+    padding: 0 1.0rem;
+
+
+
+    h1 {
+      font-size: 2.25rem;
+      text-align: center;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 1.0rem;
+      text-align: center;
+      line-height: 1.25;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    bottom: 32px;
+    left: calc(50% - 24px);
+    z-index: 3;
+
+    a {
+      display: block;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      position: relative;
+      color: #fff;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 12px;
+        border: 1px solid currentColor;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        transform: rotate(45deg);
+        position: absolute;
+        top: calc(50% - 6px);
+        left: calc(50% - 6px);
+        margin-top: -4px;
+      }
+
+      &:hover {
+        color: $color-primary-400;
+      }
+    }
+  }
+
+  &__video {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    video {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      object-fit: cover;
+    }
+  }
+
+  @include media-min() {
+    margin: 0 -2.0rem;
+
+
+    &__title {
+      height: 900px;
+      gap: 2.0rem;
+      padding: 0 2.0rem;
+
+      h1 {
+        font-size: 4.0rem;
+      }
+
+      p {
+        font-size: 1.0rem;
+      }
+    }
+
+    &__arrow {
+      bottom: 96px;
+      left: calc(50% - 32px);
+
+      a {
+        width: 64px;
+        height: 64px;
+
+        &::after {
+          width: 12px;
+          height: 12px;
+          top: calc(50% - 6px);
+          left: calc(50% - 6px);
+          margin-top: -4px;
+        }
+      }
+    }
+  }
+}
+
+.jumbotron--pagetitle {
+  .jumbotron {
+
+    &__title {
+      padding-top: 64px;
+      height: 256px;
+
+      h1 {
+        font-size: 2.0rem;
+        text-transform: none;
+      }
+    }
+
+    @include media-min() {
+      &__title {
+        padding-top: 88px;
+        height: 448px;
+
+        h1 {
+          font-size: 2.0rem;
+        }
+      }
+    }
+  }
+}

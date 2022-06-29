@@ -1,0 +1,47 @@
+.breadcrumbtrail {
+  background-color: $color-gray-100;
+  padding: 1.0rem;
+  margin: 0 -1.0rem;
+
+  ul {
+    display: flex;
+    max-width: 1600px;
+    margin: 0 auto;
+
+    li {
+      a {
+        font-size: 0.75rem;
+        color: #000;
+
+        &:hover {
+          color: $color-primary;
+        }
+      }
+
+      +li {
+        display: flex;
+        align-items: center;
+
+        &::before {
+          display: block;
+          flex-shrink: 0;
+          margin: 0 1.0rem;
+          content: "";
+
+          width: 8px;
+          height: 8px;
+          border: 1px solid currentColor;
+          border-left-color: transparent;
+          border-bottom-color: transparent;
+          transform: rotate(45deg);
+          position: relative;
+        }
+      }
+    }
+  }
+
+  @include media-min() {
+    margin: 0 -2.0rem;
+    padding: 1.0rem 2.0rem;
+  }
+}

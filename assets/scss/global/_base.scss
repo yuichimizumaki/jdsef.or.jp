@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Lato', 'Noto Sans JP', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  line-height: 1.25;
+
+  &:hover {
+    transition: 0.5s;
+  }
+}
+
+.image {
+  text-align: center;
+}
+
+.contents-space {
+  max-width: 1600px;
+  margin: 0 auto;
+
+  @include media-min(1600) {}
+}
+
+.global-main {
+  padding: 0rem 1.0rem;
+
+  &__body {
+    max-width: 1056px;
+    margin: 0 auto;
+    padding-top: 4.0rem;
+    position: relative;
+
+    @include media-min() {
+      padding-top: 6.0rem;
+    }
+
+  }
+
+  &.main-bg {}
+
+  @include media-min() {
+    padding: 0 2.0rem;
+
+    &.main-bg {
+      background-image: url(../img/main-bg.jpg);
+      background-repeat: no-repeat;
+      background-position: center 900px;
+      background-size: auto auto;
+    }
+  }
+
+}
+
+.anchor {
+  position: absolute;
+  top: 64px;
+
+  @include media-min() {
+    top: 88px;
+  }
+}
+
+.pdf-link,
+.word-link {
+  display: flex;
+  align-items: center;
+
+  &__text {
+    display: flex;
+    align-items: baseline;
+
+    @include media-min() {
+      align-items: center;
+    }
+
+    p {
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.5;
+        color: #000;
+
+        &:hover {
+          color: $color-primary;
+        }
+
+        &::before {
+          border-top: 2px solid $color-primary;
+          content: "";
+          width: 1.0rem;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+
+  &+.pdf-link,
+  &+.word-link {
+    margin-top: 1.0rem;
+  }
+
+  &__logo {
+    margin-left: 0.5rem;
+  }
+}
+
+.br-sp {
+  display: inline;
+
+  @include media-min(780) {
+    display: none;
+  }
+}
+
+.title-space {
+  margin-top: 3.0rem;
+
+  @include media-min() {
+    margin-top: 6.0rem;
+  }
+}
+
+.footer-space {
+  margin-top: 10.0rem;
+}
+
+p {
+  font-size: 1.0rem;
+  line-height: 2.0;
+  font-weight: 500;
+
+  span {}
+}
+
+h3 {
+  background-color: $color-primary;
+  color: #fff;
+  padding: 1.0rem 0 1.0rem 1.5rem;
+  font-size: 1.25rem;
+  margin-bottom: 2.0rem;
+
+  small {
+    font-size: 1.0rem;
+  }
+}

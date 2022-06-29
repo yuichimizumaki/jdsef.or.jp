@@ -1,0 +1,77 @@
+@charset 'UTF-8';
+
+
+/* Align Utility Style
+================================ */
+/* Default Variables
+++++++++++++++++++++++++++++++++ */
+$prefix-u-align-class: '.align';
+/* Align Array
+-------------------------------- */
+$u-align-type: left,
+center,
+right,
+justify !default;
+
+/* Vertical Align Array
+-------------------------------- */
+$u-vertical-align-type: top,
+text-top,
+middle,
+baseline,
+text-bottom,
+bottom !default;
+
+$u-align-assets: (
+  /* array */
+  text:($u-align-type),
+  vertical:($u-vertical-align-type),
+  /* array */
+) !default;
+
+/* Function
+++++++++++++++++++++++++++++++++ */
+@function aligns($key) {
+  @return map-get($u-align-assets, $key);
+}
+
+/* mixin
+++++++++++++++++++++++++++++++++ */
+
+/* Extend
+++++++++++++++++++++++++++++++++ */
+
+/* Style
+++++++++++++++++++++++++++++++++ */
+/* Align Parts
+-------------------------------- */
+#{$prefix-u-align-class} {
+
+  @each $keys,
+  $values in $u-align-assets {
+    @each $value in $values {
+      &-#{$value} {
+        #{$keys}-align: $value !important;
+      }
+    }
+  }
+}
+
+/* breakpoint
+-------------------------------- */
+
+@each $name in $utility-breakpoint {
+
+  #{$prefix-u-align-class} {
+    @include media-min($name) {
+      $breakpoint-class: breakpoint-class($name);
+
+      @each $value in $u-align-type {
+        &-#{$value+$breakpoint-class} {
+          text-align: $value !important;
+        }
+      }
+    }
+
+  }
+}

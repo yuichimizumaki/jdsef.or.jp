@@ -1,0 +1,79 @@
+@charset "UTF-8";
+/*! Global Styles */
+/*====================================
+  *. Global
+    ----------------------------------
+    Structure
+    ----------------------------------
+    - 1. Base Import
+    
+    ----------------------------------
+    Introduction
+    ----------------------------------
+    
+    ----------------------------------
+    Constitution
+    ----------------------------------
+    
+    ----------------------------------
+    Change Log
+    ----------------------------------
+    - 2020/07/20   Founding
+    
+====================================*/
+/*====================================
+
+  - 1. Base Import
+--------------------------------------
+  まずはbasic-styleと
+  君が作るブランクの
+  - variables
+  - function
+  - mixin を読み込むぞ
+
+====================================*/
+
+@import "base/function";
+@import "base/variables";
+@import "base/mixin";
+
+@import "module/basic-reset";
+
+@import "global/base";
+@import "global/header";
+@import "global/footer";
+@import "global/table";
+@import "global/jumbotron";
+@import "global/main";
+@import "global/breadcrumbtrail";
+@import "global/member/member";
+@import "global/news/news";
+@import "global/contact/contact";
+@import "global/privacy-policy/privacy-policy";
+@import "module/hamburger-trigger";
+
+
+/*
+テスト書き出し
+*/
+
+
+.block {
+  display: flex;
+
+  &__element {
+    display: block;
+  }
+
+  &.is-hoge {
+    display: block;
+  }
+
+  .element {
+    display: block;
+  }
+
+  &:hover {
+    background-color: $color-primary;
+  }
+}

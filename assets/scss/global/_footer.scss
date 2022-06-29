@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+.global-footer {
+  &__sitemap {
+    background-color: $color-gray-100;
+    padding: 4.0rem 1.0rem;
+    display: block;
+
+    @include media-min() {
+      padding: 8.0rem 1.0rem;
+    }
+  }
+}
+
+
+.footer-sitemap {
+  @include media-min(500) {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1600px;
+    gap: 24px;
+    line-height: 1.25;
+  }
+
+  @include media-min() {
+    gap: 160px;
+  }
+
+  dl {
+    +dl {
+      margin-top: 2.0rem;
+
+      @include media-min(500) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  dt {
+    font-size: 1.0rem;
+
+    /*dtの次にdtが来た場合*/
+    +dt {
+      margin-top: 0.5rem;
+    }
+
+    /*dtの次にddが来た場合*/
+    +dd {
+      margin-top: 0.5rem;
+
+      @include media-min(580) {
+        margin-top: 1.0rem;
+      }
+    }
+  }
+
+  dd {
+    a {
+      display: flex;
+      align-items: center;
+      color: #000;
+
+      &:hover {
+        color: $color-primary;
+      }
+
+      &::before {
+        display: block;
+        flex-shrink: 0;
+        margin-right: 0.5rem;
+        content: "";
+
+        width: 8px;
+        height: 8px;
+        border: 1px solid currentColor;
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        transform: rotate(45deg);
+        position: relative;
+
+      }
+    }
+
+    span {
+      flex-grow: 1;
+    }
+  }
+
+  ul {}
+
+  li {
+    font-size: 0.875rem;
+
+
+    /*liの次にliが来た場合*/
+    +li {
+      margin-top: 0.5rem;
+    }
+  }
+
+  a {
+    align-items: center;
+    color: #000;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  span {}
+}
+
+.global-footer__description {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2.0rem 1.0rem;
+
+  @include media-min() {
+    justify-content: space-between;
+  }
+
+
+  &--logo {
+    img {
+      width: 260px;
+
+      @include media-min(580) {
+        padding-left: 1.0rem;
+      }
+    }
+  }
+
+  .copyright {
+    font-size: 0.75rem;
+    padding-top: 1.0rem;
+
+    @include media-min(580) {
+      padding-top: 0rem;
+    }
+  }
+}
